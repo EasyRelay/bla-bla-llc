@@ -65,7 +65,7 @@ const LegalLayout: React.FC<LegalLayoutProps> = ({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <Link to="/" className="flex items-center space-x-2">
-                <Building2 className="h-8 w-8 text-blue-600" />
+              <img src="/logo/image.png" alt="company logo" className="h-10 w-24 mx-auto transform transition-all duration-700 hover:scale-110" />
                 <span className="text-xl font-bold text-gray-900">BLA BLA LLC</span>
               </Link>
               
