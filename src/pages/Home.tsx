@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
-  Building2,
   Shield,
   Cookie,
   FileText,
@@ -52,8 +51,6 @@ const faqs = [
 ];
 
 const Home: React.FC = () => {
-  const [mcCount, setMcCount] = useState<number>(0);
-  const [dotCount, setDotCount] = useState<number>(0);
   const [tIndex, setTIndex] = useState<number>(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -88,25 +85,6 @@ const Home: React.FC = () => {
     handleScroll(); // Check on initial load
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const targetMc = 1505296;
-    const targetDot = 4003402;
-    const duration = 1000;
-    const steps = 60;
-    let currentStep = 0;
-    window.scrollTo(0, 0);
-
-    const id = window.setInterval(() => {
-      currentStep++;
-      const progress = Math.min(1, currentStep / steps);
-      setMcCount(Math.round(targetMc * progress));
-      setDotCount(Math.round(targetDot * progress));
-      if (progress >= 1) window.clearInterval(id);
-    }, duration / steps);
-
-    return () => window.clearInterval(id);
   }, []);
 
   useEffect(() => {
