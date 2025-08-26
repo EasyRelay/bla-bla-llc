@@ -53,8 +53,8 @@ const LegalLayout: React.FC<LegalLayoutProps> = ({
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">
-        <a 
-          href="#main-content" 
+        <a
+          href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50"
         >
           Skip to main content
@@ -65,38 +65,35 @@ const LegalLayout: React.FC<LegalLayoutProps> = ({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <Link to="/" className="flex items-center space-x-2">
-              <img src="/logo/image.png" alt="company logo" className="h-10 w-24 mx-auto transform transition-all duration-700 hover:scale-110" />
+                <img src="/logo/bg-logo.png" alt="company logo" className="h-10 w-20 mx-auto transform transition-all duration-700 hover:scale-110" />
                 <span className="text-xl font-bold text-gray-900">BLA BLA LLC</span>
               </Link>
-              
+
               <nav className="hidden md:flex space-x-8">
-                <Link 
-                  to="/privacy-policy" 
-                  className={`text-sm font-medium transition-colors ${
-                    location.pathname === '/privacy-policy' 
-                      ? 'text-blue-600' 
+                <Link
+                  to="/privacy-policy"
+                  className={`text-sm font-medium transition-colors ${location.pathname === '/privacy-policy'
+                      ? 'text-blue-600'
                       : 'text-gray-700 hover:text-blue-600'
-                  }`}
+                    }`}
                 >
                   Privacy Policy
                 </Link>
-                <Link 
-                  to="/cookie-policy" 
-                  className={`text-sm font-medium transition-colors ${
-                    location.pathname === '/cookie-policy' 
-                      ? 'text-blue-600' 
+                <Link
+                  to="/cookie-policy"
+                  className={`text-sm font-medium transition-colors ${location.pathname === '/cookie-policy'
+                      ? 'text-blue-600'
                       : 'text-gray-700 hover:text-blue-600'
-                  }`}
+                    }`}
                 >
                   Cookie Policy
                 </Link>
-                <Link 
-                  to="/terms-of-service" 
-                  className={`text-sm font-medium transition-colors ${
-                    location.pathname === '/terms-of-service' 
-                      ? 'text-blue-600' 
+                <Link
+                  to="/terms-of-service"
+                  className={`text-sm font-medium transition-colors ${location.pathname === '/terms-of-service'
+                      ? 'text-blue-600'
                       : 'text-gray-700 hover:text-blue-600'
-                  }`}
+                    }`}
                 >
                   Terms of Service
                 </Link>
@@ -172,7 +169,7 @@ const LegalLayout: React.FC<LegalLayoutProps> = ({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="text-center">
               <div className="flex items-center justify-center space-x-2 mb-4">
-                <Building2 className="h-6 w-6 text-blue-600" />
+                <img src="/logo/bg-logo.png" alt="company logo" className="h-6 w-10" />
                 <span className="text-lg font-semibold text-gray-900">BLA BLA LLC</span>
               </div>
               <p className="text-sm text-gray-600">

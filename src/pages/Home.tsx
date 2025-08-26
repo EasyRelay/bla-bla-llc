@@ -123,8 +123,8 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <div className="h-11 w-28 rounded-md flex items-center justify-center text-white font-bold text-lg animate-truck-arrive">
-                <img src="/logo/image.png" alt="company logo" className="h-11 w-28 text-blue-600 transition-transform duration-300 hover:scale-105" />
+              <div className="h-10 w-28 rounded-md flex items-center justify-center text-white font-bold text-lg animate-truck-arrive">
+                <img src={`${isScrolled ? "/logo/bg-logo.png" : "/logo/white-logo.png"}`} alt="company logo" className="h-11 w-25 text-blue-600 transition-transform duration-300 hover:scale-105" />
               </div>
               <span className={`text-sm transition-opacity duration-300 ${isScrolled ? "text-gray-500 opacity-100" : "text-white opacity-90"}`}>Trusted Logistics & Compliance</span>
             </div>
@@ -152,10 +152,10 @@ const Home: React.FC = () => {
       {/* Hero Section with enhanced animations */}
       <section id="home" ref={sectionRefs.home}
         className="py-44 pt-32 z-20 bg-gradient-to-br bg-cover bg-no-repeat from-blue-50 to-indigo-100 relative overflow-hidden"
-        style={{ backgroundImage: "url('/logo/hero-bg.png')" }}
+        style={{ backgroundImage: "url('/logo/american-truck.png')" }}
       >
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-55"></div>
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
           <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
         </div>
@@ -163,7 +163,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 text-center relative z-30">
           <div className="transform transition duration-700 ease-out hover:scale-[1.02]">
             <div className="h-16 w-40 rounded-lg mx-auto mb-6 flex items-center justify-center text-white font-bold text-xl animate-build-in">
-              <img src="/logo/image.png" alt="company logo" className="h-16 w-30 mx-auto mb-6 transform transition-all duration-700 hover:scale-110" />
+              <img src="/logo/white-logo.png" alt="company logo" className="h-25 w-45 mx-auto mb-6 transform transition-all duration-700 hover:scale-110" />
             </div>
             <h1 className={`text-4xl md:text-5xl font-bold text-gray-200 mb-4 ${isSectionVisible('home') ? 'animate-road-in' : 'opacity-0'}`}>Welcome to BLA BLA LLC</h1>
             <p className={`text-xl text-gray-100 mb-8 max-w-3xl mx-auto ${isSectionVisible('home') ? 'animate-road-in delay-1' : 'opacity-0'}`}>BLA BLA LLC is a modern logistics company that offers a comprehensive range of supply chain management services. We specialize in optimizing delivery and storage processes, ensuring high service levels and reliability for our clients.</p>
@@ -171,12 +171,12 @@ const Home: React.FC = () => {
             <div className={`mt-6 flex justify-center gap-6 ${isSectionVisible('home') ? 'animate-road-in delay-2' : 'opacity-0'}`}>
               <div className="text-center transform transition-all duration-500 hover:scale-110">
                 <div className="text-lg text-gray-100">MC</div>
-                <div className="text-2xl font-bold text-gray-300">{mcCount.toLocaleString()}</div>
+                <div className="text-2xl font-bold text-gray-300">1505296</div>
               </div>
 
               <div className="text-center transform transition-all duration-500 hover:scale-110">
                 <div className="text-lg text-gray-100">DOT</div>
-                <div className="text-2xl font-bold text-gray-300">{dotCount.toLocaleString()}</div>
+                <div className="text-2xl font-bold text-gray-300">4003402</div>
               </div>
             </div>
 
@@ -412,12 +412,12 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-2 mb-4">
-              <Building2 className="h-6 w-6" />
+              <img src="/logo/white-logo.png" alt="company logo" className="h-6 w-10" />
               <span className="text-lg font-semibold">BLA BLA LLC</span>
             </div>
             <div className="flex justify-center gap-2 texy-xl mb-4">
-              <div className="font-bold">MC: {mcCount.toLocaleString()}</div>
-              <div className="font-bold">DOT: {dotCount.toLocaleString()}</div>
+              <div className="font-bold">MC: 1505296</div>
+              <div className="font-bold">DOT: 4003402</div>
             </div>
             <p className="text-gray-400 mb-6">Committed to transparency, compliance, and exceptional service.</p>
             <div className="flex justify-center space-x-8">
