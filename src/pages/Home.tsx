@@ -60,7 +60,7 @@ const Home: React.FC = () => {
   // const TRUCK_TYPES;
 
   const [fullname, setFullname] = useState('');
-  const [truckType, setTruckType] = useState('');
+  const [driverType, setDriverType] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [note, setNote] = useState('');
@@ -103,15 +103,15 @@ const Home: React.FC = () => {
 
   const isSectionVisible = (section: string) => visibleSections.has(section);
 
-  const handleSumbit = async (e:React.FormEvent) => {
+  const handleSumbit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
       let data;
       if (phone) {
-        data = "Fullname: " + fullname + "\n" + "Phone: " + phone + "\n" + "Email: " + email + "\n" + "Truck type: " + truckType + "\n" + "Note: " + note;
+        data = "Fullname: " + fullname + "\n" + "Phone: " + phone + "\n" + "Email: " + email + "\n" + "Truck type: " + driverType + (note !== "" ? ("\n" + "Note: " + note) : "");
       } else {
-        data = "Fullname: " + fullname + "\n" + "Email: " + email + "\n" + "Truck type: " + truckType + "\n" + "Note: " + note;
+        data = "Fullname: " + fullname + "\n" + "Email: " + email + "\n" + "Truck type: " + driverType + (note !== "" ? ("\n" + "Note: " + note) : "");
       }
 
       const res = await fetch('https://eohc0tsezpukc8k.m.pipedream.net', {
@@ -123,7 +123,7 @@ const Home: React.FC = () => {
       if (!res.ok) throw new Error('Network response was not ok');
       setFullname('');
       setNote('');
-      setTruckType('');
+      setDriverType('');
       setPhone('');
       setEmail('');
     } catch (err) {
@@ -411,7 +411,7 @@ const Home: React.FC = () => {
                   {/* Left side: Info cards */}
                   <div className="space-y-6 items-center justify-center">
                     <div className="flex justify-center">
-                  <img src={`${isScrolled ? "/logo/bg-logo.png" : "/logo/white-logo.png"}`} alt="company logo" className="flex justify-center h-30 w-48 text-blue-600 items-center" />
+                      <img src={`${isScrolled ? "/logo/bg-logo.png" : "/logo/white-logo.png"}`} alt="company logo" className="flex justify-center h-30 w-48 text-blue-600 items-center" />
                     </div>
                     <div className="flex items-start space-x-3 p-5 rounded-xl bg-white shadow hover:shadow-md transition">
                       <Phone className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
@@ -447,10 +447,11 @@ const Home: React.FC = () => {
                     <form onSubmit={handleSumbit} className="space-y-4">
                       <div className="relative">
                         <input
-                        value={fullname}
+                          value={fullname}
                           type="text"
                           placeholder="Full Name"
-                          onChange={(e) => {setFullname(e.target.value)}}
+                          required
+                          onChange={(e) => { setFullname(e.target.value) }}
                           className="w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                         />
                         <Users className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
@@ -461,7 +462,8 @@ const Home: React.FC = () => {
                           type="email"
                           value={email}
                           placeholder="Email"
-                          onChange={(e) => {setEmail(e.target.value)}}
+                          required
+                          onChange={(e) => { setEmail(e.target.value) }}
                           className="w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                         />
                         <Globe className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
@@ -471,22 +473,30 @@ const Home: React.FC = () => {
                         <input
                           type="text"
                           value={phone}
-                          placeholder="Phone Number"
-                          onChange={(e) => {setPhone(e.target.value)}}
+                          placeholder="Phone Number" 
+                          onChange={(e) => { setPhone(e.target.value) }}
                           className="w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                         />
                         <Phone className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
                       </div>
 
                       <div className="relative">
-                        <input
-                          type="text"
-                          value={truckType}
-                          placeholder="Truck Type"
-                          onChange={(e) => {setTruckType(e.target.value)}}
-                          className="w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                        />
-                        <Truck className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
+                        <select
+                          value={driverType}
+                          onChange={(e) => setDriverType(e.target.value)}
+                          required
+                          className={`w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none 
+               focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition appearance-none`}
+                        >
+                          <option value="" disabled>
+                            Select Driver Type 
+                          </option>
+                          <option value="Company Driver">Company Driver</option>
+                          <option value="Owner Operator">Owner Operator</option>
+                          <option value="Lease Operator">Lease Operator</option>
+                        </select>
+
+                        <Truck className="absolute left-3 top-2.5 w-5 h-5 text-gray-400 pointer-events-none" />
                       </div>
 
                       <div className="relative">
@@ -494,7 +504,7 @@ const Home: React.FC = () => {
                           placeholder="Note"
                           value={note}
                           rows={4}
-                          onChange={(e) => {setNote(e.target.value)}}
+                          onChange={(e) => { setNote(e.target.value) }}
                           className="w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition resize-none"
                         />
                         <FileText className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
