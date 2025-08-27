@@ -57,7 +57,7 @@ const Home: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
 
-  // const TRUCK_TYPES;
+  const [isSending, setIsSending] = useState(false);
 
   const [fullname, setFullname] = useState('');
   const [driverType, setDriverType] = useState('');
@@ -105,6 +105,7 @@ const Home: React.FC = () => {
 
   const handleSumbit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSending(true);
 
     try {
       let data;
@@ -128,6 +129,8 @@ const Home: React.FC = () => {
       setEmail('');
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsSending(false);
     }
   }
 
@@ -473,7 +476,7 @@ const Home: React.FC = () => {
                         <input
                           type="text"
                           value={phone}
-                          placeholder="Phone Number" 
+                          placeholder="Phone Number"
                           onChange={(e) => { setPhone(e.target.value) }}
                           className="w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                         />
@@ -489,7 +492,7 @@ const Home: React.FC = () => {
                focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition appearance-none`}
                         >
                           <option value="" disabled>
-                            Select Driver Type 
+                            Select Driver Type
                           </option>
                           <option value="Company Driver">Company Driver</option>
                           <option value="Owner Operator">Owner Operator</option>
@@ -512,13 +515,16 @@ const Home: React.FC = () => {
 
                       <button
                         type="submit"
-                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-md py-2 text-sm font-medium shadow-md hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 hover:-translate-y-0.5"
+                        disabled={isSending}
+                        className={`w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-md py-2 text-sm font-medium shadow-md transition-all duration-300 ${isSending
+                            ? "opacity-70 cursor-not-allowed"
+                            : "hover:from-blue-700 hover:to-indigo-700 hover:-translate-y-0.5"
+                          }`}
                       >
-                        Send Message
+                        {isSending ? "Sending..." : "Send Message"}
                       </button>
                     </form>
                   </div>
-
                 </div>
               </div>
             </section>
