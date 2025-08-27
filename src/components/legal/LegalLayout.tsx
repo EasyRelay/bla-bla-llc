@@ -73,8 +73,8 @@ const LegalLayout: React.FC<LegalLayoutProps> = ({
                 <Link
                   to="/privacy-policy"
                   className={`text-sm font-medium transition-colors ${location.pathname === '/privacy-policy'
-                      ? 'text-blue-600'
-                      : 'text-gray-700 hover:text-blue-600'
+                    ? 'text-blue-600'
+                    : 'text-gray-700 hover:text-blue-600'
                     }`}
                 >
                   Privacy Policy
@@ -82,8 +82,8 @@ const LegalLayout: React.FC<LegalLayoutProps> = ({
                 <Link
                   to="/cookie-policy"
                   className={`text-sm font-medium transition-colors ${location.pathname === '/cookie-policy'
-                      ? 'text-blue-600'
-                      : 'text-gray-700 hover:text-blue-600'
+                    ? 'text-blue-600'
+                    : 'text-gray-700 hover:text-blue-600'
                     }`}
                 >
                   Cookie Policy
@@ -91,8 +91,8 @@ const LegalLayout: React.FC<LegalLayoutProps> = ({
                 <Link
                   to="/terms-of-service"
                   className={`text-sm font-medium transition-colors ${location.pathname === '/terms-of-service'
-                      ? 'text-blue-600'
-                      : 'text-gray-700 hover:text-blue-600'
+                    ? 'text-blue-600'
+                    : 'text-gray-700 hover:text-blue-600'
                     }`}
                 >
                   Terms of Service
@@ -124,20 +124,27 @@ const LegalLayout: React.FC<LegalLayoutProps> = ({
 
                 <div className="bg-white rounded-lg p-6 border border-gray-200">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Information</h3>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex items-start space-x-2">
-                      <Phone className="h-4 w-4 text-gray-400 mt-0.5 flex-shrink-0" />
-                      <a href="tel:+1-937-910-8131" className="text-gray-600 hover:text-blue-600">
-                        +1-937-910-8131
-                      </a>
+                  <div className="flex flex-col space-y-3 text-sm">
+                    <div className='flex-row'>
+                      <div className="space-x-2">
+                        <Phone className="h-4 w-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                        <a href="tel:+1-937-910-8131" className="text-gray-600 hover:text-blue-600">
+                          +1-937-910-8131
+                        </a>
+                      </div>
+                      <div className="space-x-2">
+                        <MapPin className="h-4 w-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                        <address className="text-gray-600 not-italic">
+                          26250 Euclid Ave, 9th Floor<br />
+                          Suite #916<br />
+                          Euclid, Ohio, 44132, USA
+                        </address>
+                      </div>
                     </div>
-                    <div className="flex items-start space-x-2">
-                      <MapPin className="h-4 w-4 text-gray-400 mt-0.5 flex-shrink-0" />
-                      <address className="text-gray-600 not-italic">
-                        26250 Euclid Ave, 9th Floor<br />
-                        Suite #916<br />
-                        Euclid, Ohio, 44132, USA
-                      </address>
+                    <div>
+                      <form>
+
+                      </form>
                     </div>
                   </div>
                 </div>

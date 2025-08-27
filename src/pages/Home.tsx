@@ -13,7 +13,8 @@ import {
   ChevronRight,
   ChevronLeft,
   Clock,
-  Globe
+  Globe,
+  Truck
 } from "lucide-react";
 import "./animations.css";
 
@@ -56,6 +57,14 @@ const Home: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
 
+  // const TRUCK_TYPES;
+
+  const [fullname, setFullname] = useState('');
+  const [truckType, setTruckType] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [note, setNote] = useState('');
+
   const sectionRefs = {
     home: useRef<HTMLElement>(null),
     services: useRef<HTMLElement>(null),
@@ -93,6 +102,34 @@ const Home: React.FC = () => {
   }, []);
 
   const isSectionVisible = (section: string) => visibleSections.has(section);
+
+  const handleSumbit = async (e:React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      let data;
+      if (phone) {
+        data = "Fullname: " + fullname + "\n" + "Phone: " + phone + "\n" + "Email: " + email + "\n" + "Truck type: " + truckType + "\n" + "Note: " + note;
+      } else {
+        data = "Fullname: " + fullname + "\n" + "Email: " + email + "\n" + "Truck type: " + truckType + "\n" + "Note: " + note;
+      }
+
+      const res = await fetch('https://eohc0tsezpukc8k.m.pipedream.net', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: data,
+      });
+
+      if (!res.ok) throw new Error('Network response was not ok');
+      setFullname('');
+      setNote('');
+      setTruckType('');
+      setPhone('');
+      setEmail('');
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -364,23 +401,117 @@ const Home: React.FC = () => {
             <h2 className={`text-3xl font-bold text-gray-900 mb-8 ${isSectionVisible('contact') ? 'animate-road-in' : 'opacity-0'}`}>Contact Information</h2>
             <p className={`text-lg text-gray-600 mb-8 ${isSectionVisible('contact') ? 'animate-road-in delay-1' : 'opacity-0'}`}>Have questions about our policies or need assistance? We're here to help.</p>
 
-            <div className={`grid md:grid-cols-2 gap-8 ${isSectionVisible('contact') ? 'animate-road-in delay-2' : 'opacity-0'}`}>
-              <div className="flex items-start space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-blue-50 transition-all duration-300 transform hover:-translate-y-1">
-                <Phone className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
-                <div className="text-left">
-                  <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                  <a href="tel:+1-937-910-8131" className="text-gray-600 hover:text-blue-600 transition-colors">+1-937-910-8131</a>
-                </div>
-              </div>
+            <section
+              id="contact"
+              className={`relative py-16 bg-gray-50 ${isSectionVisible('contact') ? 'animate-road-in delay-2' : 'opacity-0'
+                }`}
+            >
+              <div className="container max-w-6xl px-6">
+                <div className="grid md:grid-cols-2 gap-10 items-center">
+                  {/* Left side: Info cards */}
+                  <div className="space-y-6 items-center justify-center">
+                    <div className="flex justify-center">
+                  <img src={`${isScrolled ? "/logo/bg-logo.png" : "/logo/white-logo.png"}`} alt="company logo" className="flex justify-center h-30 w-48 text-blue-600 items-center" />
+                    </div>
+                    <div className="flex items-start space-x-3 p-5 rounded-xl bg-white shadow hover:shadow-md transition">
+                      <Phone className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
+                      <div className="text-left">
+                        <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
+                        <a
+                          href="tel:+1-937-910-8131"
+                          className="text-gray-600 hover:text-blue-600 transition-colors"
+                        >
+                          +1-937-910-8131
+                        </a>
+                      </div>
+                    </div>
 
-              <div className="flex items-start space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-blue-50 transition-all duration-300 transform hover:-translate-y-1">
-                <MapPin className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
-                <div className="text-left">
-                  <h3 className="font-semibold text-gray-900 mb-1">Address</h3>
-                  <address className="text-gray-600 not-italic">26250 Euclid Ave, 9th Floor<br />Suite #916<br />Euclid, Ohio, 44132, USA</address>
+                    <div className="flex items-start space-x-3 p-5 rounded-xl bg-white shadow hover:shadow-md transition">
+                      <MapPin className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
+                      <div className="text-left">
+                        <h3 className="font-semibold text-gray-900 mb-1">Address</h3>
+                        <address className="text-gray-600 not-italic leading-relaxed">
+                          26250 Euclid Ave, 9th Floor <br />
+                          Suite #916 <br />
+                          Euclid, Ohio, 44132, USA
+                        </address>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right side: Contact Form */}
+                  <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-6 text-center">
+                      Send us a message
+                    </h3>
+                    <form onSubmit={handleSumbit} className="space-y-4">
+                      <div className="relative">
+                        <input
+                        value={fullname}
+                          type="text"
+                          placeholder="Full Name"
+                          onChange={(e) => {setFullname(e.target.value)}}
+                          className="w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                        />
+                        <Users className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
+                      </div>
+
+                      <div className="relative">
+                        <input
+                          type="email"
+                          value={email}
+                          placeholder="Email"
+                          onChange={(e) => {setEmail(e.target.value)}}
+                          className="w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                        />
+                        <Globe className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
+                      </div>
+
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={phone}
+                          placeholder="Phone Number"
+                          onChange={(e) => {setPhone(e.target.value)}}
+                          className="w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                        />
+                        <Phone className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
+                      </div>
+
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={truckType}
+                          placeholder="Truck Type"
+                          onChange={(e) => {setTruckType(e.target.value)}}
+                          className="w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                        />
+                        <Truck className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
+                      </div>
+
+                      <div className="relative">
+                        <textarea
+                          placeholder="Note"
+                          value={note}
+                          rows={4}
+                          onChange={(e) => {setNote(e.target.value)}}
+                          className="w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition resize-none"
+                        />
+                        <FileText className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-md py-2 text-sm font-medium shadow-md hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 hover:-translate-y-0.5"
+                      >
+                        Send Message
+                      </button>
+                    </form>
+                  </div>
+
                 </div>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </section>
