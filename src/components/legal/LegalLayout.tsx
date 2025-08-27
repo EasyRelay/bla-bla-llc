@@ -127,8 +127,8 @@ const LegalLayout: React.FC<LegalLayoutProps> = ({
                   <div className="space-y-3 text-sm">
                     <div className="flex items-start space-x-2">
                       <Phone className="h-4 w-4 text-gray-400 mt-0.5 flex-shrink-0" />
-                      <a href="tel:+1-305-636-8257" className="text-gray-600 hover:text-blue-600">
-                        +1-305-636-8257
+                      <a href="tel:+1-937-910-8131" className="text-gray-600 hover:text-blue-600">
+                        +1-937-910-8131
                       </a>
                     </div>
                     <div className="flex items-start space-x-2">

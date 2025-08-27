@@ -186,7 +186,7 @@ const CookiePolicy: React.FC = () => {
           <p className="font-semibold text-gray-900 mb-2">BLA BLA LLC</p>
           <p className="text-gray-700 mb-1">26250 Euclid Ave, 9th Floor, Suite #916</p>
           <p className="text-gray-700 mb-1">Euclid, Ohio, 44132, USA</p>
-          <p className="text-gray-700 mb-1">Phone: <a href="tel:+1-305-636-8257" className="text-blue-600 hover:text-blue-800">+1-305-636-8257</a></p>
+          <p className="text-gray-700 mb-1">Phone: <a href="tel:+1-937-910-8131" className="text-blue-600 hover:text-blue-800">+1-937-910-8131</a></p>
           <p className="text-gray-700">Email: <a href="mailto:safety@blablallc.com" className="text-blue-600 hover:text-blue-800">safety@blablallc.com</a></p>
         </div>
       </LegalSection>

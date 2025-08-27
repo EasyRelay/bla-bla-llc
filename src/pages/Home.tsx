@@ -369,7 +369,7 @@ const Home: React.FC = () => {
                 <Phone className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
                 <div className="text-left">
                   <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                  <a href="tel:+1-305-636-8257" className="text-gray-600 hover:text-blue-600 transition-colors">+1-305-636-8257</a>
+                  <a href="tel:+1-937-910-8131" className="text-gray-600 hover:text-blue-600 transition-colors">+1-937-910-8131</a>
                 </div>
               </div>
 
@@ -412,7 +412,7 @@ const Home: React.FC = () => {
 
       {/* Floating quick contact button */}
       <a
-        href="tel:+1-305-636-8257"
+        href="tel:+1-937-910-8131"
         className="fixed right-6 bottom-6 z-50 bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 hover:scale-105 transition-transform duration-300 animate-bounce-slow"
         aria-label="Call us"
       >
