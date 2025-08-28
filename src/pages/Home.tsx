@@ -17,6 +17,8 @@ import {
   Truck
 } from "lucide-react";
 import "./animations.css";
+import { div } from "framer-motion/client";
+import toast, { Toaster } from "react-hot-toast";
 
 const testimonials = [
   {
@@ -127,8 +129,9 @@ const Home: React.FC = () => {
       setDriverType('');
       setPhone('');
       setEmail('');
+      toast.success("Your message has been sent successfully!")
     } catch (err) {
-      console.error(err);
+      toast.error("Something went wrong, please try again.")
     } finally {
       setIsSending(false);
     }
@@ -489,13 +492,13 @@ const Home: React.FC = () => {
                           onChange={(e) => setDriverType(e.target.value)}
                           required
                           className={`w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none 
-               focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition appearance-none`}
+                                focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition appearance-none`}
                         >
                           <option value="" disabled>
                             Select Driver Type
                           </option>
-                          <option value="Company Driver">Company Driver</option>
                           <option value="Owner Operator">Owner Operator</option>
+                          <option value="Company Driver">Company Driver</option>
                           <option value="Lease Operator">Lease Operator</option>
                         </select>
 
@@ -517,15 +520,17 @@ const Home: React.FC = () => {
                         type="submit"
                         disabled={isSending}
                         className={`w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-md py-2 text-sm font-medium shadow-md transition-all duration-300 ${isSending
-                            ? "opacity-70 cursor-not-allowed"
-                            : "hover:from-blue-700 hover:to-indigo-700 hover:-translate-y-0.5"
+                          ? "opacity-70 cursor-not-allowed"
+                          : "hover:from-blue-700 hover:to-indigo-700 hover:-translate-y-0.5"
                           }`}
                       >
                         {isSending ? "Sending..." : "Send Message"}
                       </button>
+
                     </form>
                   </div>
                 </div>
+                <Toaster position="top-right" reverseOrder={false} />
               </div>
             </section>
           </div>
