@@ -17,7 +17,6 @@ import {
   Truck
 } from "lucide-react";
 import "./animations.css";
-import { div } from "framer-motion/client";
 import toast, { Toaster } from "react-hot-toast";
 
 const testimonials = [

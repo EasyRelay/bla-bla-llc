@@ -11,6 +11,7 @@ const PrivacyPolicy: React.FC = () => {
     { id: 'cookies-tracking', title: 'Cookies & Tracking Technologies' },
     { id: 'data-retention', title: 'Data Retention' },
     { id: 'third-party', title: 'Third-Party Disclosure' },
+    { id: 'ringcentral', title: 'RingCentral Integration' },
     { id: 'user-rights', title: 'User Rights & Consent' },
     { id: 'security', title: 'Security Measures' },
     { id: 'policy-changes', title: 'Changes to This Policy' },
@@ -111,6 +112,22 @@ const PrivacyPolicy: React.FC = () => {
           <li>Business transfers (mergers, acquisitions, or asset sales)</li>
           <li>With your explicit consent for specific purposes</li>
         </ul>
+      </LegalSection>
+
+      <Divider />
+
+      <LegalSection id="ringcentral" title="RingCentral Integration">
+        <p className="mb-4">
+          Our service uses RingCentral's APIs to facilitate communication. When you connect your RingCentral account, we may access and use data such as:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mb-4">
+          <li>Your RingCentral account information</li>
+          <li>Call and message metadata (not message content)</li>
+          <li>Contact and directory information</li>
+        </ul>
+        <p className="mb-4">
+          This data is not shared with third parties except as required to operate the service.
+        </p>
       </LegalSection>
 
       <Divider />
