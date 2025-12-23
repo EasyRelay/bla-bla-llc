@@ -109,17 +109,27 @@ const Home: React.FC = () => {
     setIsSending(true);
 
     try {
-      let data;
-      if (phone) {
-        data = "Fullname: " + fullname + "\n" + "Phone: " + phone + "\n" + "Email: " + email + "\n" + "Truck type: " + driverType + (note !== "" ? ("\n" + "Note: " + note) : "");
-      } else {
-        data = "Fullname: " + fullname + "\n" + "Email: " + email + "\n" + "Truck type: " + driverType + (note !== "" ? ("\n" + "Note: " + note) : "");
-      }
+      const telegramMessage = `
+📩 *Driver request*
 
-      const res = await fetch('https://eohc0tsezpukc8k.m.pipedream.net', {
+👤 Name: ${fullname}
+📞 Phone: ${phone}
+📧 Email: ${email || "Not provided"}
+🚚 Driver type: ${driverType}
+📝 Note: ${note || "-"}
+`.trim();
+
+      const chatId = "691607265";
+      const companyName = "BLA BLA LLC";
+
+      const res = await fetch('https://eodjhxtp187qij.m.pipedream.net', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: data,
+        body: JSON.stringify({
+          text: telegramMessage,
+          chat_id: chatId,
+          company: companyName
+        }),
       });
 
       if (!res.ok) throw new Error('Network response was not ok');
